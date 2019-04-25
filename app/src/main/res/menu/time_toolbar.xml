@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/add_menu"
+        android:icon="@drawable/btn_add"
+        android:orderInCategory="2"
+        app:showAsAction="always"
+        android:title="1" />
+
+</menu>

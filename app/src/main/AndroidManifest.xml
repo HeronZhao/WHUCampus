@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hp.mycampus">
+
+    <!-- 访问网络的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 文件读取的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 向SD卡中创建或者删除的权限。 -->
+    <uses-permission android:name="andorid.permission.MONUN_UNMOUNT_FILESYSTEMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="我的校园"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity" />
+
+        <activity android:name=".activity.ScoreActivity" />
+        <activity android:name=".activity.ScoreShowActivity" />
+        <activity android:name=".activity.NewsActivity" />
+        <activity android:name=".activity.ExpressActivity" />
+
+        <activity android:name=".activity.NewsShowActivity" />
+        <activity android:name=".activity.CampusCardActivity" />
+        <activity android:name=".activity.CourseActivity" />
+        <activity
+            android:name=".activity.AddCourseActivity"
+            android:label="新建课程"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".activity.LostActivity"/>
+        <activity android:name=".activity.LibraryActivity" />
+        <activity android:name=".activity.LibraryLoginActivity" />
+        <activity android:name=".activity.NoticeActivity" />
+        <activity android:name=".activity.TimeActivity" />
+        <activity android:name=".activity.AddTimeActivity" />
+        <activity android:name=".activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
