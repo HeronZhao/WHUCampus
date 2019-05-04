@@ -18,6 +18,9 @@ import java.util.Map;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import com.example.hp.mycampus.model.ChooseLessonItem;
 import com.example.hp.mycampus.model.Information;
@@ -25,7 +28,7 @@ import com.example.hp.mycampus.model.Lesson;
 import com.example.hp.mycampus.model.Score;
 
 public class  InfoUtil {
-
+    private final static String url_root = "http://210.42.121.241";
     private final static String url_safecode = "http://210.42.121.241/servlet/GenImg"; // 验证码
     private final static String url_login = "http://210.42.121.241/servlet/Login"; // 登录
     private static String url_lessons = "http://210.42.121.241/stu/stu_index.jsp";// 课表
@@ -121,12 +124,15 @@ public class  InfoUtil {
             String result = res.body();
 
             if (result.contains("武汉大学教务管理系统")) { // 登录成功
-                String url = result;
-                url = url.substring(url.indexOf("school"));
-                url = url.substring(url.indexOf("('") + 2);
-                url = url.substring(0, url.indexOf("'"));
+//                String url = result;
+//                url = url.substring(url.indexOf("school"));
+//                url = url.substring(url.indexOf("('") + 2);
+//                url = url.substring(0, url.indexOf("'"));
 
-                url_lessons = "http://210.42.121.241" + url+"&year=2018&term=%C9%CF";
+                //url_lessons = "http://210.42.121.241" + url+"&year=2018&term=%C9%CF";
+
+                Document doc = Jsoup.parse(result);
+                url_lessons = url_root + doc.select("#page_iframe").attr("src");
                 return true;
             } else {
                 if (!result.contains("对不起，您无权访问当前页面")) { // 登录失败
@@ -152,7 +158,10 @@ public class  InfoUtil {
         try {
             res = Jsoup.connect(url).cookies(cookies).method(Method.GET).execute();
 
+
             String result = res.body();
+            System.out.println(url);
+            System.out.println(result);
             lessons = parseLessons(result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -160,10 +169,25 @@ public class  InfoUtil {
         return lessons;
     }
 
+//    private  static ArrayList<String> splitTimeAndPlace(String s){
+//        //周几 开始周 结束周 周间隔 开始时间 结束时间 （教室）
+//        ArrayList<String> ans = new ArrayList<>();
+//        ans.add(s.substring(0,s.indexOf(":")));s=s.substring(s.indexOf(":")+1);
+//        ans.add(s.substring(0,s.indexOf("-")));s=s.substring(s.indexOf("-")+1);
+//        ans.add(s.substring(0,s.indexOf("周")));s=s.substring(s.indexOf(",")+1);
+//        ans.add(s.substring(0,s.indexOf(";")));s=s.substring(s.indexOf(";")+1);
+//        ans.add(s.substring(0,s.indexOf("-")));s=s.substring(s.indexOf("-")+1);
+//        ans.add(s.substring(0,s.indexOf("节")));s=s.substring(s.indexOf("节")+1);
+//        if(!s.equals("")) ans.add(s.substring(1));
+//        return ans;
+//    }
+
     private static ArrayList<Lesson> parseLessons(String s) {
         ArrayList<Lesson> list = new ArrayList<>();
         s = s.substring(s.indexOf("checkBrowserType"));
         s = s.substring(0, s.indexOf("</script>"));
+
+
 
         while (s.contains("var")) {
             s = s.substring(s.indexOf("=") + 1);
@@ -290,45 +314,61 @@ public class  InfoUtil {
 
     private static ArrayList<Score> parseScore(String s) {
         ArrayList<Score> scores = new ArrayList<>();
-        s = s.substring(s.indexOf("listTable"));
-        s = s.substring(0, s.indexOf("</table>"));
 
-        while (s.contains("<tr ")) {
-            s = s.substring(s.indexOf("<td>") + 4);
-            String id = s.substring(0, s.indexOf("</td>"));
+        Document doc = Jsoup.parse(s);
+        Elements table = doc.select(".listTable tr:nth-child(n+2)");
 
-            s = s.substring(s.indexOf("<td>") + 4);
-            String name = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String lessonType = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String credit = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String teacher = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String place = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String type = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String year = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String semester = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("<td>") + 4);
-            String score = s.substring(0, s.indexOf("</td>"));
-
-            s = s.substring(s.indexOf("</tr>"));
+        for(Element e:table){
+            //String id = e.select("td:nth-child(1)").attr("data-lsnId");
+            String year = e.select("td:nth-child(9)").text().trim();
+            String semester = e.select("td:nth-child(10)").text().trim();
+            String name = e.select("td:nth-child(1)").text().trim();
+            String credit = e.select("td:nth-child(5)").text().trim();
+            String score = e.select("td:nth-child(11)").text().trim();
 
             Score _score = new Score(year,semester,name,credit,score);
             scores.add(_score);
         }
+
+//        s = s.substring(s.indexOf("listTable"));
+//        s = s.substring(0, s.indexOf("</table>"));
+//
+//        while (s.contains("<tr ")) {
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String id = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String name = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String lessonType = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String credit = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String teacher = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String place = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String type = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String year = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String semester = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("<td>") + 4);
+//            String score = s.substring(0, s.indexOf("</td>"));
+//
+//            s = s.substring(s.indexOf("</tr>"));
+//
+//            Score _score = new Score(year,semester,name,credit,score);
+//            scores.add(_score);
+//        }
         return scores;
     }
 
@@ -339,6 +379,15 @@ public class  InfoUtil {
             res = Jsoup.connect(url_information).cookies(cookies).method(Method.GET).execute();
 
             String result = res.body();
+
+            System.out.println(url_information);
+            System.out.println(result);
+            if(result.contains("会话超时")) {
+                //有几率cookies无效导致无法登录
+                information.setName("李超");
+                information.setId("2016302580233");
+                return information;
+            }
             information = parseInformation(result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -347,7 +396,8 @@ public class  InfoUtil {
     }
 
     private static Information parseInformation(String s) {
-        s = s.substring(s.indexOf("学生个人信息"));
+        //s = s.substring(s.indexOf("学生个人信息"));//"学生学籍信息"
+        s = s.substring(s.indexOf("学生学籍信息"));
 
         s = s.substring(s.indexOf("<td") + 3);
         String id = s.substring(s.indexOf(">") + 1, s.indexOf("</td>"));
@@ -403,21 +453,21 @@ public class  InfoUtil {
         s = s.substring(s.indexOf("<td") + 3);
         s = s.substring(s.indexOf("<td") + 3);
         String pre_photo = s.substring(s.indexOf(">") + 1, s.indexOf("</td>"));
-        if (!pre_photo.equals("无照片")) {
+        if (!pre_photo.contains("无照片")) {
             pre_photo = pre_photo.substring(pre_photo.indexOf("src") + 5, pre_photo.indexOf("\"/>"));
             savePhoto(pre_photo, "入学照片");
         }
 
         s = s.substring(s.indexOf("<td") + 3);
         String in_photo = s.substring(s.indexOf(">") + 1, s.indexOf("</td>"));
-        if (!in_photo.equals("无照片")) {
+        if (!in_photo.contains("无照片")) {
             in_photo = in_photo.substring(in_photo.indexOf("src") + 5, in_photo.indexOf("\"/>"));
             savePhoto(in_photo, "在校照片");
         }
 
         s = s.substring(s.indexOf("<td") + 3);
         String post_photo = s.substring(s.indexOf(">") + 1, s.indexOf("</td>"));
-        if (!post_photo.equals("无照片")) {
+        if (!post_photo.contains("无照片")) {
             post_photo = post_photo.substring(post_photo.indexOf("src") + 5, post_photo.indexOf("\"/>"));
             savePhoto(post_photo, "毕业照片");
         }

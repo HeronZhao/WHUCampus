@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //显示用户信息
-        //Information studentInfo=InfoUtil.getInformation();
-        //TextView textView=(TextView) findViewById(R.id.textView27);
-        //textView.setText(studentInfo.getId()+"-"+studentInfo.getName());
+        Information studentInfo=InfoUtil.getInformation();
+        TextView textView=(TextView) findViewById(R.id.textView27);
+        textView.setText(studentInfo.getId()+"-"+studentInfo.getName());
 
         //设置课表查询按钮的监听
         select_lesson=(CardView) findViewById(R.id.lesson);

@@ -51,12 +51,12 @@ public class ScoreActivity extends Activity {
         sel_xq.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                s_xq = String.valueOf(position);
+                s_xq = String.valueOf(position+1);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                s_xq = "上";
+                s_xq = "1";
             }
         });
 
@@ -75,8 +75,10 @@ public class ScoreActivity extends Activity {
 
                 ArrayList<Score> newScores = new ArrayList<>();
                 for(Score score : scores) {
+                    System.out.println(score);
                     if(score.getYear().equals(s_xn)) {
-                        String judge = (s_xq.equals("0"))?"上":"下";
+//                        String judge = (s_xq.equals("0"))?"上":"下";
+                        String judge=s_xq;
                         if(score.getSemester().equals(judge)) {
                             newScores.add(score);
                         }
