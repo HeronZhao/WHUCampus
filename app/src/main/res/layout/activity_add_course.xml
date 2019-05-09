@@ -109,7 +109,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
-            android:text="完成" />
+            android:background="#7AC5CD"
+            android:textSize="18sp"
+            android:text="完  成" />
 
     </LinearLayout>
 
