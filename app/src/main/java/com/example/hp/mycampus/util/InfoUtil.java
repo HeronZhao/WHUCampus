@@ -123,6 +123,7 @@ public class  InfoUtil {
 
             String result = res.body();
 
+            //这个判断逻辑不太正确，会导致全部都判断为登录成功
             if (result.contains("武汉大学教务管理系统")) { // 登录成功
 //                String url = result;
 //                url = url.substring(url.indexOf("school"));
@@ -161,7 +162,7 @@ public class  InfoUtil {
 
             String result = res.body();
             System.out.println(url);
-            System.out.println(result);
+            //System.out.println(result);
             lessons = parseLessons(result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -325,8 +326,10 @@ public class  InfoUtil {
             String name = e.select("td:nth-child(1)").text().trim();
             String credit = e.select("td:nth-child(5)").text().trim();
             String score = e.select("td:nth-child(11)").text().trim();
+            String type = e.select("td:nth-child(2)").text().trim();
 
             Score _score = new Score(year,semester,name,credit,score);
+            _score.setType(type);
             scores.add(_score);
         }
 
@@ -381,7 +384,7 @@ public class  InfoUtil {
             String result = res.body();
 
             System.out.println(url_information);
-            System.out.println(result);
+            //System.out.println(result);
             if(result.contains("会话超时")) {
                 //有几率cookies无效导致无法登录
                 information.setName("李超");

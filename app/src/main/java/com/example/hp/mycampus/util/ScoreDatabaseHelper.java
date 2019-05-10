@@ -18,6 +18,7 @@ public class ScoreDatabaseHelper extends SQLiteOpenHelper {
                 "semester varchar(32), " +
                 "name varchar(32), " +
                 "credit varchar(32)," +
+                "lessontype varchar(32), " +
                 "score integer)");
     }
 

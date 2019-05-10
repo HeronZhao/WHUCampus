@@ -10,6 +10,7 @@ public class Score implements Serializable {
 	private String name;// 课程名称
 	private String credit;// 学分
 	private String score;// 成绩
+	private String type;//课程类型
 
 
 	public Score(String year, String semester, String name, String credit, String score) {
@@ -19,6 +20,20 @@ public class Score implements Serializable {
 		this.credit=credit;
 		this.score=score;
 	}
+
+
+	public Score(String year, String semester, String name, String credit, String score,String type) {
+		this.year=year;
+		this.semester=semester;
+		this.name=name;
+		this.credit=credit;
+		this.score=score;
+		this.type = type;
+	}
+
+	public String getType() {return type;}
+
+	public void setType(String type) {this.type=type;}
 
 	public String getName() {
 		return name;
@@ -64,6 +79,6 @@ public class Score implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Score [ name=" + name  + ", credit=" +  credit + ", year=" + year + ", semester=" + semester + ", score=" + score + "]";
+		return "Score [ name=" + name  + ", credit=" +  credit + ", year=" + year + ", semester=" + semester + ", score=" + score +", type="+type+ "]";
 	}
 }

@@ -43,7 +43,9 @@ public class ScoreShowActivity extends AppCompatActivity {
                         cursor.getString(cursor.getColumnIndex("semester")),
                         cursor.getString(cursor.getColumnIndex("name")),
                         cursor.getString(cursor.getColumnIndex("credit")),
-                        cursor.getString(cursor.getColumnIndex("score"))));
+                        cursor.getString(cursor.getColumnIndex("score")),
+                        cursor.getString(cursor.getColumnIndex("lessontype"))
+                        ));
             } while(cursor.moveToNext());
         }
         cursor.close();
@@ -74,12 +76,14 @@ public class ScoreShowActivity extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase =  scoreDatabaseHelper.getWritableDatabase();
         //执行SQL语句
         sqLiteDatabase.execSQL
-                ("insert into scores(year, semester, name, credit, score) " + "values(?, ?, ?, ?, ?)",
+                ("insert into scores(year, semester, name, credit, score, lessontype) " + "values(?, ?, ?, ?, ?, ?)",
                         new String[] {score.getYear(),
                                 score.getSemester(),
                                 score.getName(),
                                 score.getCredit(),
-                                score.getScore()+""}
+                                score.getScore()+"",
+                                score.getType()
+                        }
                 );
     }
 
