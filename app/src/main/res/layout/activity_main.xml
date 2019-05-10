@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity"
+    android:scrollbars="vertical"
+    tools:listitem="@layout/news_item"
     android:background="@drawable/main_background">
 
     <RelativeLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="60dp"
+
         android:orientation="vertical">
 
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="0"
             app:srcCompat="@drawable/main_whu1" />
 
@@ -39,13 +42,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="70dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -57,7 +63,7 @@
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true"
                 tools:targetApi="LOLLIPOP"
-                android:layout_margin="5dp"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:stateListAnimator="@drawable/lift_on_touch"
@@ -68,27 +74,27 @@
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="left"
-                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="right"
+                    android:textSize="14dp"
                     android:text="成绩" />
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/textView20"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:text="成绩不理想？该努力了！"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="12dp"/>
+                    android:textSize="12dp"/>-->
                 <ImageView
                     android:id="@+id/iv_pic1"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="70dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp"
                     android:src="@drawable/main_pic2" />
 
 
@@ -103,45 +109,238 @@
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true"
                 tools:targetApi="LOLLIPOP"
-                android:layout_margin="5dp"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:stateListAnimator="@drawable/lift_on_touch"
                 android:foreground="?android:attr/selectableItemBackground">
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/textView21"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:text="上课好助手~点我点我~"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="12dp" />
+                    android:textSize="12dp" />-->
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="left"
-                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="right"
+                    android:textSize="14dp"
                     android:text="课表" />
 
                 <ImageView
                     android:id="@+id/iv_pic2"
                     android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp"
                     android:src="@drawable/main_pic1" />
 
 
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/remind"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                tools:targetApi="LOLLIPOP"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:stateListAnimator="@drawable/lift_on_touch"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <!--<TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="该复习了吗？我来告诉你~"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="12dp"/>-->
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="right"
+                    android:textSize="14dp"
+                    android:text="备忘录" />
+                <ImageView
+                    android:id="@+id/iv_pic4"
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:src="@drawable/main_pic4" />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/library"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                android:layout_margin="1dp"
+                tools:targetApi="LOLLIPOP"
+                android:clickable="true"
+                android:stateListAnimator="@drawable/lift_on_touch"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <!--<TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="查看图书馆？点我点我~"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="12dp"/>-->
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="right"
+                    android:textSize="14dp"
+                    android:text="图书馆" />
+
+                <ImageView
+                    android:id="@+id/iv_pic8"
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:src="@drawable/main_pic9" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                android:layout_margin="1dp"
+                tools:targetApi="LOLLIPOP"
+                android:clickable="true"
+                android:stateListAnimator="@drawable/lift_on_touch"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <!--<TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="校园卡增值服务全在这里~"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="12dp"/>-->
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="right"
+                    android:textSize="14dp"
+                    android:text="校园卡" />
+
+                <ImageView
+                    android:id="@+id/iv_pic7"
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:src="@drawable/main_pic7" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/post"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                android:layout_margin="1dp"
+                tools:targetApi="LOLLIPOP"
+                android:clickable="true"
+                android:stateListAnimator="@drawable/lift_on_touch"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <!--<TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="点我可查看快递信息喔~"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="12dp"/>-->
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="right"
+                    android:textSize="14dp"
+                    android:text="快递" />
+
+                <ImageView
+                    android:id="@+id/iv_pic6"
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:src="@drawable/main_pic8" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:id="@+id/linearLayout7"
@@ -150,11 +349,11 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="225dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -166,20 +365,37 @@
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true"
                 tools:targetApi="LOLLIPOP"
-                android:layout_margin="5dp"
+                android:layout_margin="0dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:stateListAnimator="@drawable/lift_on_touch"
                 android:foreground="?android:attr/selectableItemBackground">
-
                 <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="校园通知"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="    更多"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_gravity="right"
+                    android:textSize="13dp"
+                    android:background="@drawable/edit_more"/>
+                <!--<TextView
                     android:id="@+id/textView22"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:text="校内新资讯~各种通知哦~"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="12dp"/>
+                    android:textSize="12dp"/>-->
 
                 <TextView
                     android:id="@+id/textView14"
@@ -193,63 +409,30 @@
 
                 <ImageView
                     android:id="@+id/iv_pic3"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/main_pic3" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/remind"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
-                tools:targetApi="LOLLIPOP"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:stateListAnimator="@drawable/lift_on_touch"
-                android:foreground="?android:attr/selectableItemBackground">
-
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="0dp"
+                    android:src="@drawable/news_1"
+                    android:scaleType="fitXY"/>
                 <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="70dp"
+                    android:id="@+id/textView21"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:text="该复习了吗？我来告诉你~"
+                    android:text="今年武大飘了多少次梧桐絮？"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="20dp"
-                    android:textSize="12dp"/>
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="left"
-                    android:textSize="18dp"
-                    android:text="学习备忘录" />
-                <ImageView
-                    android:id="@+id/iv_pic4"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/main_pic4" />
+                    android:layout_gravity="bottom"
+                    android:textSize="14dp"/>
             </androidx.cardview.widget.CardView>
+
+
         </LinearLayout>
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="225dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -258,7 +441,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="230dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -270,189 +453,60 @@
                 app:cardElevation="5dp"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true"
-                android:layout_margin="5dp"
+                android:layout_margin="0dp"
                 tools:targetApi="LOLLIPOP"
                 android:clickable="true"
                 android:stateListAnimator="@drawable/lift_on_touch"
                 android:foreground="?android:attr/selectableItemBackground">
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/textView24"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:text="丢东西了吗？来看看吧~"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="12dp"/>
+                    android:textSize="12dp"/>-->
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_gravity="left"
                     android:textSize="18dp"
                     android:text="失物招领" />
-
-                <ImageView
-                    android:id="@+id/iv_pic5"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/main_pic5" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/post"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
-                android:layout_margin="5dp"
-                tools:targetApi="LOLLIPOP"
-                android:clickable="true"
-                android:stateListAnimator="@drawable/lift_on_touch"
-                android:foreground="?android:attr/selectableItemBackground">
-
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:text="点我可查看快递信息喔~"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="20dp"
-                    android:textSize="12dp"/>
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="left"
-                    android:textSize="18dp"
-                    android:text="快递信息" />
-
-                <ImageView
-                    android:id="@+id/iv_pic6"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/main_pic8" />
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
-                android:layout_margin="5dp"
-                tools:targetApi="LOLLIPOP"
-                android:clickable="true"
-                android:stateListAnimator="@drawable/lift_on_touch"
-                android:foreground="?android:attr/selectableItemBackground">
-
                 <TextView
                     android:id="@+id/textView26"
-                    android:layout_width="70dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="校园卡增值服务全在这里~"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="20dp"
-                    android:textSize="12dp"/>
-
-                <TextView
-                    android:id="@+id/textView30"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="left"
-                    android:textSize="18dp"
-                    android:text="证件卡务" />
-
-                <ImageView
-                    android:id="@+id/iv_pic7"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:text="    更多"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="6dp"
                     android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/main_pic7" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/library"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
-                android:layout_margin="5dp"
-                tools:targetApi="LOLLIPOP"
-                android:clickable="true"
-                android:stateListAnimator="@drawable/lift_on_touch"
-                android:foreground="?android:attr/selectableItemBackground">
-
+                    android:textSize="13dp"
+                    android:background="@drawable/edit_more"/>
+                <ImageView
+                    android:id="@+id/iv_pic5"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="0dp"
+                    android:src="@drawable/lost_3"
+                    android:scaleType="fitXY" />
                 <TextView
                     android:id="@+id/textView28"
-                    android:layout_width="70dp"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:text="查看图书馆？点我点我~"
+                    android:text="丢失钥匙"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="20dp"
-                    android:textSize="12dp"/>
-
-                <TextView
-                    android:id="@+id/textView29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="left"
-                    android:textSize="18dp"
-                    android:text="图书馆" />
-
-                <ImageView
-                    android:id="@+id/iv_pic8"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/main_pic9" />
+                    android:layout_gravity="bottom"
+                    android:textSize="14dp"/>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-
     </RelativeLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
