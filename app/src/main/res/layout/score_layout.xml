@@ -1,36 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="25dp"
     android:layout_row="1"
     android:layout_column="3"
+    android:layout_margin="5dp"
+    android:padding="6dp"
+    android:background="@drawable/editsharp"
+
     >
     <TextView
         android:layout_width="45dp"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:text="Sample Text  - Medium"
+        android:textColor="#FFFFFF"
         android:id="@+id/textViewYear"
         android:layout_columnWeight="0"/>
     <TextView
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:text="Sample Text  - Medium"
+        android:textColor="#FFFFFF"
         android:id="@+id/textViewSemester"
         android:layout_columnWeight="0"/>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:text="Sample Text  - Medium"
+        android:textColor="#FFFFFF"
         android:id="@+id/textViewName"
         android:lines="1"
         android:maxEms="8"
         android:ellipsize="end"
         android:layout_columnWeight="1"/>
     <TextView
+        android:layout_width="67dp"
+        android:layout_height="25dp"
+        android:text="Sample Text  - Medium"
+        android:textColor="#FFFFFF"
+        android:id="@+id/textViewType"
+        android:layout_columnWeight="0"/>
+    <TextView
         android:layout_width="37dp"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:text="Sample Text  - Medium"
+        android:textColor="#FFFFFF"
         android:id="@+id/textViewCredit"
         android:layout_columnWeight="0"/>
     <TextView
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:text="Sample Text  - Medium"
+        android:textColor="#FFFFFF"
         android:id="@+id/textViewScore"
         android:layout_columnWeight="0"/>
 

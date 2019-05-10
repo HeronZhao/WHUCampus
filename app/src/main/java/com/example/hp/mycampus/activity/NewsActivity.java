@@ -38,10 +38,10 @@ public class NewsActivity extends Activity {
     }
 
     private void initData() {
-        News news0=new News((String) this.getResources().getText(R.string.news_name_1),(String) this.getResources().getText(R.string.news_des_1),"school.jpg");
-        News news1=new News((String) this.getResources().getText(R.string.news_name_2),(String) this.getResources().getText(R.string.news_des_2),"news1.jpg");
-        News news2=new News((String) this.getResources().getText(R.string.news_name_3),(String) this.getResources().getText(R.string.news_des_3),"news2.jpg");
-        News news3=new News((String) this.getResources().getText(R.string.news_name_4),(String) this.getResources().getText(R.string.news_des_4),"news3.jpg");
+        News news0=new News((String) this.getResources().getText(R.string.news_name_1),(String) this.getResources().getText(R.string.news_des_1),"news_1.jpg");
+        News news1=new News((String) this.getResources().getText(R.string.news_name_2),(String) this.getResources().getText(R.string.news_des_2),"news_2.jpg");
+        News news2=new News((String) this.getResources().getText(R.string.news_name_3),(String) this.getResources().getText(R.string.news_des_3),"news_3.jpg");
+        News news3=new News((String) this.getResources().getText(R.string.news_name_4),(String) this.getResources().getText(R.string.news_des_4),"news_4.jpg");
         list.add(news0);
         list.add(news1);
         list.add(news2);

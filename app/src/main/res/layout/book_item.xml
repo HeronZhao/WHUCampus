@@ -5,13 +5,16 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
 
+
     app:cardCornerRadius="7dp"
     app:cardBackgroundColor="#f8f8f8">
     <LinearLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
