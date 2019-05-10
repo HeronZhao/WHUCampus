@@ -32,10 +32,12 @@ public class ScoreAdapter extends ArrayAdapter<Score> {
             TextView textViewName = (TextView) v.findViewById(R.id.textViewName);
             TextView textViewCredit = (TextView) v.findViewById(R.id.textViewCredit);
             TextView textViewScore = (TextView) v.findViewById(R.id.textViewScore);
+            TextView textViewType = (TextView) v.findViewById(R.id.textViewType);
             textViewYear.setText(score.getYear());
             textViewSemester.setText(score.getSemester());
             textViewName.setText(score.getName());
             textViewCredit.setText(score.getCredit());
+            textViewType.setText(score.getType());
             textViewScore.setText(score.getScore() + "");
         }
         return v;
