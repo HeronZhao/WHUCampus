@@ -34,6 +34,13 @@
         android:ellipsize="end"
         android:layout_columnWeight="1"/>
     <TextView
+        android:layout_width="67dp"
+        android:layout_height="25dp"
+        android:text="Sample Text  - Medium"
+        android:textColor="#FFFFFF"
+        android:id="@+id/textViewType"
+        android:layout_columnWeight="0"/>
+    <TextView
         android:layout_width="37dp"
         android:layout_height="25dp"
         android:text="Sample Text  - Medium"
