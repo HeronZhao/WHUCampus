@@ -1,5 +1,7 @@
 package com.example.hp.mycampus.activity;
 
+import java.util.Calendar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -9,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -60,12 +63,12 @@ public class CourseActivity extends AppCompatActivity {
 
     //从数据库加载数据
     /**
-    * @Description: 从数据库加载数据
-    * @Param:
-    * @return:
-    * @Author: SPG
-    * @Date: 2018/7/17 
-    */
+     * @Description: 从数据库加载数据
+     * @Param:
+     * @return:
+     * @Author: SPG
+     * @Date: 2018/7/17
+     */
     private void loadData() {
         //数组保存所有的客户课程信息
         ArrayList<Lesson> lessonsList = new ArrayList<>();
@@ -91,13 +94,13 @@ public class CourseActivity extends AppCompatActivity {
     }
 
     //保存数据到数据库  1.打开数据库2.执行SQL语句
-    /** 
-    * @Description: 保存课程数据到数据库：1.打开数据库2.执行insert语句将对象属性存入
-    * @Param:  lesson
-    * @return:  
-    * @Author: SPG
-    * @Date: 2018/7/17  
-    */ 
+    /**
+     * @Description: 保存课程数据到数据库：1.打开数据库2.执行insert语句将对象属性存入
+     * @Param:  lesson
+     * @return:
+     * @Author: SPG
+     * @Date: 2018/7/17
+     */
     private void saveData(Lesson lesson) {
         //当数据库不可写入时，getReadableDatabase()以只读的方式打开数据库，而getWritableDatabase()会出现异常
         SQLiteDatabase sqLiteDatabase =  databaseHelper.getWritableDatabase();
@@ -113,13 +116,13 @@ public class CourseActivity extends AppCompatActivity {
                 );
     }
 
-    /** 
-    * @Description: 创建课程节数的视图（每一个小块课程）
-    * @Param:  
-    * @return:  
-    * @Author: SPG
-    * @Date: 2018/7/17  
-    */
+    /**
+     * @Description: 创建课程节数的视图（每一个小块课程）
+     * @Param:
+     * @return:
+     * @Author: SPG
+     * @Date: 2018/7/17
+     */
     private void createLeftView() {
         for (int i = 0;i<maxcoursesNumber;i++){
             View view = LayoutInflater.from(this).inflate(R.layout.left_view,null);
@@ -133,13 +136,16 @@ public class CourseActivity extends AppCompatActivity {
     }
 
     /**
-    * @description: 创建课表视图
-    * @param:  lesson
-    * @return:
-    * @author: SPG
-    * @date: 2018/7/17  15:52
-    */
+     * @description: 创建课表视图
+     * @param:  lesson
+     * @return:
+     * @author: SPG
+     * @date: 2018/7/17  15:52
+     */
     private void createcourseView(final Lesson lesson) {
+        //获取当日是星期几
+        Calendar calendar=Calendar.getInstance();
+        int todayinweek=calendar.get(Calendar.DAY_OF_WEEK);
         //获取课程是星期几
         int nowDay = Integer.valueOf(lesson.getDay());
         //获取课程开始的节数
@@ -160,7 +166,13 @@ public class CourseActivity extends AppCompatActivity {
                 case 7: day = findViewById(R.id.sunday); break;
             }
             //每一个课程都是一个course_card
-            final View v = LayoutInflater.from(this).inflate(R.layout.course_card, null); //加载单个课程布局
+            final View v; //加载单个课程布局
+            if(nowDay==todayinweek-1||nowDay==todayinweek+6){//加载今日课程视图
+                v = LayoutInflater.from(this).inflate(R.layout.today_course_card, null);
+            }else{//加载本周非今日课程视图
+                v = LayoutInflater.from(this).inflate(R.layout.course_card, null);
+            }
+
             v.setY(course_height * class_start-1); //设置开始高度,即第几节课开始,比如第一节课就从0开始
             //给课程布局设置参数，宽
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
@@ -168,7 +180,8 @@ public class CourseActivity extends AppCompatActivity {
                     (ViewGroup.LayoutParams.MATCH_PARENT,(class_end-class_start+1)*course_height - 8,1); //设置布局高度,即跨多少节课
             v.setLayoutParams(params);//属性绑定
             TextView text = v.findViewById(R.id.text_view);
-            text.setText(lesson.getLessonName() + "\n" + lesson.getTeacherName() + "\n" +"@"+ lesson.getClassRoom()); //显示课程名
+            text.setText(lesson.getLessonName() + "\n" + lesson.getTeacherName()+ "\n" +"@"+ lesson.getClassRoom().trim()); //显示课程名
+
             day.addView(v);
             //长按删除课程
             v.setOnLongClickListener(new View.OnLongClickListener() {
@@ -191,12 +204,12 @@ public class CourseActivity extends AppCompatActivity {
     }
 
     /**
-    * @description: 获取创建课表界面中的lesson,并添加进课表界面中去
-    * @param: requestCode resultCode data
-    * @return:
-    * @author: SPG
-    * @date: 2018/7/17  15:54
-    */
+     * @description: 获取创建课表界面中的lesson,并添加进课表界面中去
+     * @param: requestCode resultCode data
+     * @return:
+     * @author: SPG
+     * @date: 2018/7/17  15:54
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 0 && resultCode == 0 && data != null){
@@ -238,14 +251,14 @@ public class CourseActivity extends AppCompatActivity {
         }
         return true;
     }
-    
-    /** 
-    * @description: 从数据库中将当前所有的课程信息全部删除
-    * @param:  
-    * @return:
-    * @author: SPG
-    * @date: 2018/7/17 16:00
-    */ 
+
+    /**
+     * @description: 从数据库中将当前所有的课程信息全部删除
+     * @param:
+     * @return:
+     * @author: SPG
+     * @date: 2018/7/17 16:00
+     */
     private void delete(){
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
         sqLiteDatabase.execSQL("delete from lessons");
