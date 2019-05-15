@@ -136,6 +136,7 @@ public class LoginActivity extends Activity {
                                     mode=0;
                                     startActivity(intent);
                                 } else {
+                                    System.out.println(InfoUtil.getReason());
                                     Message msg = handler.obtainMessage();
                                     msg.arg1 = 0;
                                     handler.sendMessage(msg);//提示错误信息

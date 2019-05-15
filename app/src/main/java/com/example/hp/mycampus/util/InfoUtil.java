@@ -124,7 +124,7 @@ public class  InfoUtil {
             String result = res.body();
 
             //这个判断逻辑不太正确，会导致全部都判断为登录成功
-            if (result.contains("武汉大学教务管理系统")) { // 登录成功
+            if (result.contains("退出系统")) { // 登录成功
 //                String url = result;
 //                url = url.substring(url.indexOf("school"));
 //                url = url.substring(url.indexOf("('") + 2);
@@ -136,16 +136,16 @@ public class  InfoUtil {
                 url_lessons = url_root + doc.select("#page_iframe").attr("src");
                 return true;
             } else {
-                if (!result.contains("对不起，您无权访问当前页面")) { // 登录失败
-
-                    result = result.substring(result.indexOf("center"));
-                    result = result.substring(result.indexOf("px;\">"));
-                    reason = result.substring(5, result.indexOf("<"));
-                    return false;
-                } else {
+                if (result.contains("用户名/密码错误")) { // 登录失败
                     reason = "用户名/密码错误";
+                    //result = result.substring(result.indexOf("center"));
+                    //result = result.substring(result.indexOf("px;\">"));
+                    //reason = result.substring(5, result.indexOf("<"));
                     return false;
-                }
+                } else if(result.contains("验证码错误")){
+                    reason = "验证码错误";
+                    return false;
+                }else  return false;
             }
         } catch (IOException e) {
             e.printStackTrace();
